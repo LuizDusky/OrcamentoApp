@@ -32,35 +32,6 @@
             font-size: 24px;
         }
         
-        .controls {
-            padding: 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .controls button {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-right: 10px;
-            font-weight: 500;
-        }
-        
-        .controls button:hover {
-            background: #218838;
-        }
-        
-        .reset-btn {
-            background: #dc3545 !important;
-        }
-        
-        .reset-btn:hover {
-            background: #c82333 !important;
-        }
-        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -107,6 +78,7 @@
             text-align: right;
             font-weight: 500;
             font-family: 'Courier New', monospace;
+            white-space: nowrap;
         }
         
         .total-section {
@@ -119,17 +91,6 @@
         .total-section td {
             border: none;
             padding: 15px 12px;
-        }
-        
-        .descricao {
-            color: #6c757d;
-            font-size: 12px;
-            font-style: italic;
-        }
-        
-        .pacote-pre {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
         }
         
         .obs {
@@ -146,17 +107,39 @@
         }
         
         @media (max-width: 768px) {
-            .container {
+            body {
                 margin: 10px;
-                border-radius: 0;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 8px;
             }
             
             table {
-                font-size: 12px;
+                font-size: 11px;
             }
             
             th, td {
-                padding: 8px 6px;
+                padding: 6px 4px;
+            }
+            
+            .checkbox-cell {
+                width: 35px;
+            }
+            
+            .valor {
+                font-size: 11px;
+                min-width: 70px;
+            }
+            
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .obs {
+                font-size: 11px;
+                padding: 15px;
             }
         }
     </style>
@@ -370,8 +353,6 @@
                     <td class="valor">600,00</td>
                 </tr>
                 
-                
-                
                 <!-- Total -->
                 <tr class="total-section">
                     <td colspan="3"><strong>💰 TOTAL DO ORÇAMENTO</strong></td>
@@ -396,49 +377,14 @@
             let total = 2000; // Valor básico sempre incluído
             
             const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#basico)');
-            const pacotesSelecionados = [];
             
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
-                    if (checkbox.dataset.tipo === 'pacote') {
-                        pacotesSelecionados.push({
-                            elemento: checkbox,
-                            valor: parseInt(checkbox.dataset.valor)
-                        });
-                    } else {
-                        total += parseInt(checkbox.dataset.valor || 0);
-                    }
+                    total += parseInt(checkbox.dataset.valor || 0);
                 }
             });
             
-            // Se houver pacotes selecionados, usar o maior valor
-            if (pacotesSelecionados.length > 0) {
-                const maiorPacote = pacotesSelecionados.reduce((maior, atual) => 
-                    atual.valor > maior.valor ? atual : maior
-                );
-                total = maiorPacote.valor;
-            }
-            
             document.getElementById('total').innerHTML = `<strong>R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
-        }
-        
-        function resetar() {
-            document.querySelectorAll('input[type="checkbox"]:not(#basico)').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            calcularTotal();
-        }
-        
-        function selecionarIntermediario() {
-            resetar();
-            document.getElementById('pacote-inter').checked = true;
-            calcularTotal();
-        }
-        
-        function selecionarCompleto() {
-            resetar();
-            document.getElementById('pacote-completo').checked = true;
-            calcularTotal();
         }
         
         // Event listeners para recalcular ao marcar/desmarcar
