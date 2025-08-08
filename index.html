@@ -106,6 +106,74 @@
             margin-top: 0;
         }
         
+        .expandir-btn {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            padding: 0;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .expandir-btn:hover {
+            color: #0056b3;
+        }
+        
+        .expandir-btn.aberto {
+            transform: rotate(180deg);
+        }
+        
+        .detalhes {
+            display: none;
+            background: #f8f9fa;
+            border-left: 3px solid #007bff;
+            margin: 8px 0;
+            padding: 15px;
+            border-radius: 5px;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .detalhes.visivel {
+            display: block;
+        }
+        
+        .detalhes h4 {
+            margin: 0 0 10px 0;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        .detalhes p {
+            margin: 8px 0;
+            line-height: 1.5;
+            color: #6c757d;
+        }
+        
+        .detalhes img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 300px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+        }
+        
         @media (max-width: 768px) {
             body {
                 margin: 10px;
@@ -135,6 +203,20 @@
             
             .header h1 {
                 font-size: 18px;
+            }
+            
+            .expandir-btn {
+                font-size: 14px;
+                margin-left: 5px;
+            }
+            
+            .detalhes {
+                padding: 10px;
+                margin: 5px 0;
+            }
+            
+            .detalhes h4 {
+                font-size: 12px;
             }
             
             .obs {
@@ -179,13 +261,41 @@
                 </tr>
                 <tr>
                     <td class="checkbox-cell"><input type="checkbox" id="auth-google" data-valor="400"></td>
-                    <td>Autenticação Google*</td>
+                    <td>
+                        Autenticação Google*
+                        <button class="expandir-btn" onclick="toggleDetalhes('auth-google-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="auth-google-detalhes" class="detalhes">
+                            <h4>🔐 Autenticação Google</h4>
+                            <img src="https://www.fabricadecodigo.com/wp-content/uploads/2016/02/image06.png" alt="Exemplo de tela de login social">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Botão "Entrar com Google"</p>
+                            <p>• Configuração da API do Google</p>
+                            <p>• Criação automática de conta no primeiro login</p>
+                            <p>• Sincronização de dados básicos (nome, email, foto, etc)</p>
+                            <p><strong>Benefícios:</strong> Login mais rápido, menos abandono de usuários, dados atualizados automaticamente</p>
+                            <p><strong>Observação:</strong> Cliente precisa criar contas de desenvolvedor no Google</p>
+                        </div>
+                    </td>
                     <td>Login social integrado</td>
                     <td class="valor">400,00</td>
                 </tr>
                 <tr>
                     <td class="checkbox-cell"><input type="checkbox" id="login-custom" data-valor="600"></td>
-                    <td>Sistema de login personalizado</td>
+                    <td>
+                        Sistema de login personalizado
+                        <button class="expandir-btn" onclick="toggleDetalhes('login-custom-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="login-custom-detalhes" class="detalhes">
+                            <h4>🔑 Sistema de Login Personalizado</h4>
+                            <img src="https://community.e-com.plus/uploads/default/original/2X/c/cddc62af80902c98e21ffaa71c7898b2369ef7fa.png" alt="Exemplo de tela de login personalizada">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Tela de cadastro com validação de email</p>
+                            <p>• Tela de login com email e senha</p>
+                            <p>• Validações de segurança (senha forte, email válido)</p>
+                            <p>• Sistema de confirmação por email</p>
+                            <p>• Proteção contra tentativas de hack</p>
+                            <p><strong>Benefícios:</strong> Controle total dos dados, personalização completa da experiência</p>
+                        </div>
+                    </td>
                     <td>Login com email/senha próprio</td>
                     <td class="valor">600,00</td>
                 </tr>
@@ -237,7 +347,22 @@
                 </tr>
                 <tr>
                     <td class="checkbox-cell"><input type="checkbox" id="push" data-valor="500"></td>
-                    <td>Notificações push</td>
+                    <td>
+                        Notificações push
+                        <button class="expandir-btn" onclick="toggleDetalhes('push-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="push-detalhes" class="detalhes">
+                            <h4>🔔 Notificações Push</h4>
+                            <img src="https://miro.medium.com/v2/resize:fit:800/1*DBhQ6-1Vbnx9cxTlaXK2lA.png" alt="Exemplo de notificação push no celular">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Configuração do Firebase Cloud Messaging</p>
+                            <p>• Envio automático de confirmações de agendamento</p>
+                            <p>• Lembretes 1 dia antes da viagem</p>
+                            <p>• Notificações de promoções e ofertas</p>
+                            <p>• Painel para enviar notificações personalizadas</p>
+                            <p><strong>Benefícios:</strong> Melhora engajamento, reduz no-show, aumenta vendas</p>
+                            <p><strong>Funciona mesmo com o app fechado!</strong></p>
+                        </div>
+                    </td>
                     <td>Alertas no celular</td>
                     <td class="valor">500,00</td>
                 </tr>
@@ -266,7 +391,23 @@
                 </tr>
                 <tr>
                     <td class="checkbox-cell"><input type="checkbox" id="gateway" data-valor="1500"></td>
-                    <td>Gateway de pagamento*</td>
+                    <td>
+                        Gateway de pagamento*
+                        <button class="expandir-btn" onclick="toggleDetalhes('gateway-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="gateway-detalhes" class="detalhes">
+                            <h4>💳 Gateway de Pagamento</h4>
+                            <img src="https://inn.cash/static/media/image-payment-gateway.11b0f9f34aa682685024.webp" alt="Exemplo de tela de pagamento">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Integração com Mercado Pago, PagSeguro ou PicPay</p>
+                            <p>• Pagamento por cartão, PIX, boleto</p>
+                            <p>• Tela de checkout segura</p>
+                            <p>• Confirmação automática de pagamentos</p>
+                            <p>• Histórico de transações</p>
+                            <p>• Geração de recibos</p>
+                            <p><strong>Benefícios:</strong> Pagamento imediato, menos inadimplência, processo automatizado</p>
+                            <p><strong>Cliente precisa:</strong> Conta no gateway escolhido (taxas próprias aplicáveis)</p>
+                        </div>
+                    </td>
                     <td>PicPay/Mercado Pago integrado</td>
                     <td class="valor">1.500,00</td>
                 </tr>
@@ -301,7 +442,23 @@
                 </tr>
                 <tr>
                     <td class="checkbox-cell"><input type="checkbox" id="maps" data-valor="900"></td>
-                    <td>Google Maps integrado*</td>
+                    <td>
+                        Google Maps integrado*
+                        <button class="expandir-btn" onclick="toggleDetalhes('maps-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="maps-detalhes" class="detalhes">
+                            <h4>🗺️ Google Maps Integrado</h4>
+                            <img src="https://developers.google.com/static/maps/images/landing/react-codelab-thumbnail.png?hl=pt-br" alt="Exemplo de mapa no app">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Mapa interativo dentro do app</p>
+                            <p>• Localização dos pontos de embarque</p>
+                            <p>• Rotas e direções para o destino</p>
+                            <p>• Estimativa de tempo de chegada</p>
+                            <p>• Marcadores personalizados dos destinos</p>
+                            <p>• GPS para acompanhar a viagem</p>
+                            <p><strong>Benefícios:</strong> Melhor experiência do usuário, menos dúvidas sobre localização</p>
+                            <p><strong>Cliente precisa:</strong> API Key do Google Maps (cobrança conforme uso)</p>
+                        </div>
+                    </td>
                     <td>Mapas e localização</td>
                     <td class="valor">900,00</td>
                 </tr>
@@ -330,7 +487,24 @@
                 </tr>
                 <tr>
                     <td class="checkbox-cell"><input type="checkbox" id="painel-admin" data-valor="1500"></td>
-                    <td>Painel administrativo web*</td>
+                    <td>
+                        Painel administrativo web*
+                        <button class="expandir-btn" onclick="toggleDetalhes('painel-admin-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="painel-admin-detalhes" class="detalhes">
+                            <h4>📊 Painel Administrativo Web</h4>
+                            <img src="https://www.cesarlopes.com/site/wp-content/uploads/2020/07/adminlte-1024x596.png" alt="Exemplo de dashboard administrativo">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Dashboard com métricas em tempo real</p>
+                            <p>• Lista completa de agendamentos</p>
+                            <p>• Gestão de destinos e preços</p>
+                            <p>• Envio de notificações em massa</p>
+                            <p>• Relatórios de vendas e receita</p>
+                            <p>• Sistema de usuários administrativos</p>
+                            <p>• Exportação de dados para Excel</p>
+                            <p><strong>Benefícios:</strong> Controle total do negócio, acesso de qualquer computador</p>
+                            <p><strong>Requer:</strong> Hospedagem web (cerca de R$ 20-50/mês)</p>
+                        </div>
+                    </td>
                     <td>Dashboard para gerenciar tudo</td>
                     <td class="valor">1.500,00</td>
                 </tr>
@@ -391,6 +565,24 @@
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener('change', calcularTotal);
         });
+        
+        // Função para expandir/contrair detalhes
+        function toggleDetalhes(elementoId) {
+            const detalhes = document.getElementById(elementoId);
+            const botao = event.target;
+            
+            if (detalhes.classList.contains('visivel')) {
+                // Fechar
+                detalhes.classList.remove('visivel');
+                botao.innerHTML = '▼';
+                botao.classList.remove('aberto');
+            } else {
+                // Abrir
+                detalhes.classList.add('visivel');
+                botao.innerHTML = '▲';
+                botao.classList.add('aberto');
+            }
+        }
         
         // Inicializar
         calcularTotal();
