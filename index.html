@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento App de Viagem</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .controls button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: 500;
+        }
+        
+        .controls button:hover {
+            background: #218838;
+        }
+        
+        .reset-btn {
+            background: #dc3545 !important;
+        }
+        
+        .reset-btn:hover {
+            background: #c82333 !important;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #495057;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .categoria {
+            background: #6c757d;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .basico {
+            background: #d1ecf1;
+        }
+        
+        .checkbox-cell {
+            text-align: center;
+            width: 60px;
+        }
+        
+        input[type="checkbox"] {
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        
+        .valor {
+            text-align: right;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .total-section {
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .total-section td {
+            border: none;
+            padding: 15px 12px;
+        }
+        
+        .descricao {
+            color: #6c757d;
+            font-size: 12px;
+            font-style: italic;
+        }
+        
+        .pacote-pre {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .obs {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            font-size: 13px;
+            color: #6c757d;
+        }
+        
+        .obs h3 {
+            color: #495057;
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💼 Orçamento - App de Agendamento e Vendas de Viagem</h1>
+        </div>
+        
+        <div class="controls">
+            <button onclick="calcularTotal()">💰 Calcular Total</button>
+            <button onclick="selecionarIntermediario()">📦 Pacote Intermediário</button>
+            <button onclick="selecionarCompleto()">🎯 Pacote Completo</button>
+            <button onclick="resetar()" class="reset-btn">🔄 Limpar Tudo</button>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Selecionar</th>
+                    <th>Item</th>
+                    <th>Descrição</th>
+                    <th>Valor (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Pacote Básico -->
+                <tr class="categoria">
+                    <td colspan="4">📱 PACOTE BÁSICO</td>
+                </tr>
+                <tr class="basico">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" id="basico" checked disabled>
+                    </td>
+                    <td><strong>App Básico</strong></td>
+                    <td>Interface básica, formulário, Google Sheets, até 3 telas principais</td>
+                    <td class="valor">2.500,00</td>
+                </tr>
+                
+                <!-- Autenticação -->
+                <tr class="categoria">
+                    <td colspan="4">🔐 AUTENTICAÇÃO E SEGURANÇA</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="auth-google" data-valor="800"></td>
+                    <td>Autenticação Google/Facebook</td>
+                    <td>Login social integrado</td>
+                    <td class="valor">800,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="login-custom" data-valor="600"></td>
+                    <td>Sistema de login personalizado</td>
+                    <td>Login com email/senha próprio</td>
+                    <td class="valor">600,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="recuperar-senha" data-valor="300"></td>
+                    <td>Recuperação de senha</td>
+                    <td>Sistema de reset por email</td>
+                    <td class="valor">300,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="criptografia" data-valor="500"></td>
+                    <td>Criptografia de dados</td>
+                    <td>Segurança avançada dos dados</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                
+                <!-- Gestão de Clientes -->
+                <tr class="categoria">
+                    <td colspan="4">👥 GESTÃO DE CLIENTES</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="cadastro-completo" data-valor="700"></td>
+                    <td>Cadastro completo de clientes</td>
+                    <td>Formulário detalhado + validações</td>
+                    <td class="valor">700,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="historico" data-valor="500"></td>
+                    <td>Histórico de viagens</td>
+                    <td>Listagem de agendamentos anteriores</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="favoritos" data-valor="400"></td>
+                    <td>Sistema de favoritos</td>
+                    <td>Salvar destinos preferidos</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="perfil" data-valor="350"></td>
+                    <td>Perfil editável</td>
+                    <td>Tela para editar dados pessoais</td>
+                    <td class="valor">350,00</td>
+                </tr>
+                
+                <!-- Notificações -->
+                <tr class="categoria">
+                    <td colspan="4">🔔 NOTIFICAÇÕES E COMUNICAÇÃO</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="push" data-valor="600"></td>
+                    <td>Notificações push</td>
+                    <td>Alertas no celular</td>
+                    <td class="valor">600,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="email-notif" data-valor="400"></td>
+                    <td>Notificações por email</td>
+                    <td>Confirmações e lembretes</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="chat" data-valor="1200"></td>
+                    <td>Sistema de mensagens</td>
+                    <td>Chat integrado no app</td>
+                    <td class="valor">1.200,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="lembretes" data-valor="500"></td>
+                    <td>Lembretes automáticos</td>
+                    <td>Avisos programados</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                
+                <!-- Pagamentos -->
+                <tr class="categoria">
+                    <td colspan="4">💳 PAGAMENTOS E VENDAS</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="gateway" data-valor="1500"></td>
+                    <td>Gateway de pagamento</td>
+                    <td>PicPay/Mercado Pago integrado</td>
+                    <td class="valor">1.500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="carrinho" data-valor="800"></td>
+                    <td>Carrinho de compras</td>
+                    <td>Múltiplos itens por pedido</td>
+                    <td class="valor">800,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="cupons" data-valor="600"></td>
+                    <td>Sistema de cupons</td>
+                    <td>Descontos promocionais</td>
+                    <td class="valor">600,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="relatorios-vendas" data-valor="700"></td>
+                    <td>Relatórios de vendas</td>
+                    <td>Dashboard de faturamento</td>
+                    <td class="valor">700,00</td>
+                </tr>
+                
+                <!-- Funcionalidades Avançadas -->
+                <tr class="categoria">
+                    <td colspan="4">⚡ FUNCIONALIDADES AVANÇADAS</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="busca" data-valor="800"></td>
+                    <td>Busca e filtros avançados</td>
+                    <td>Pesquisa por preço, data, local</td>
+                    <td class="valor">800,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="maps" data-valor="900"></td>
+                    <td>Google Maps integrado</td>
+                    <td>Mapas e localização</td>
+                    <td class="valor">900,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="avaliacoes" data-valor="700"></td>
+                    <td>Sistema de avaliações</td>
+                    <td>Estrelas e comentários</td>
+                    <td class="valor">700,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="offline" data-valor="1000"></td>
+                    <td>Modo offline básico</td>
+                    <td>Funciona sem internet</td>
+                    <td class="valor">1.000,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="social" data-valor="400"></td>
+                    <td>Compartilhamento social</td>
+                    <td>Integração redes sociais</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                
+                <!-- Gestão -->
+                <tr class="categoria">
+                    <td colspan="4">📊 GESTÃO E ANALYTICS</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="painel-admin" data-valor="1500"></td>
+                    <td>Painel administrativo web</td>
+                    <td>Dashboard para gerenciar tudo</td>
+                    <td class="valor">1.500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="analytics" data-valor="800"></td>
+                    <td>Relatórios e analytics</td>
+                    <td>Métricas de uso e vendas</td>
+                    <td class="valor">800,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="backup" data-valor="500"></td>
+                    <td>Backup automático</td>
+                    <td>Segurança dos dados</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="sync" data-valor="600"></td>
+                    <td>Sincronização multi-dispositivos</td>
+                    <td>Dados em tempo real</td>
+                    <td class="valor">600,00</td>
+                </tr>
+                
+                <!-- Pacotes Pré-montados -->
+                <tr class="categoria">
+                    <td colspan="4">📦 PACOTES PRÉ-MONTADOS</td>
+                </tr>
+                <tr class="pacote-pre">
+                    <td class="checkbox-cell"><input type="checkbox" id="pacote-inter" data-valor="4800" data-tipo="pacote"></td>
+                    <td><strong>Pacote Intermediário</strong></td>
+                    <td>Básico + Auth Google + Cadastro + Push + Busca + 3 meses suporte</td>
+                    <td class="valor">4.800,00</td>
+                </tr>
+                <tr class="pacote-pre">
+                    <td class="checkbox-cell"><input type="checkbox" id="pacote-completo" data-valor="8500" data-tipo="pacote"></td>
+                    <td><strong>Pacote Completo</strong></td>
+                    <td>Funcionalidades principais + 6 meses suporte</td>
+                    <td class="valor">8.500,00</td>
+                </tr>
+                
+                <!-- Total -->
+                <tr class="total-section">
+                    <td colspan="3"><strong>💰 TOTAL DO ORÇAMENTO</strong></td>
+                    <td class="valor" id="total"><strong>R$ 2.500,00</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="obs">
+            <h3>📋 Observações Importantes:</h3>
+            <p><strong>• Prazo:</strong> 2-4 semanas (varia conforme funcionalidades selecionadas)</p>
+            <p><strong>• Pagamento:</strong> 50% na assinatura + 50% na entrega</p>
+            <p><strong>• Revisões:</strong> Até 3 revisões incluídas</p>
+            <p><strong>• Garantia:</strong> 30 dias para correção de bugs</p>
+            <p><strong>• Manutenção:</strong> R$ 300,00/mês (opcional)</p>
+            <p><strong>• Válido por:</strong> 30 dias</p>
+        </div>
+    </div>
+
+    <script>
+        function calcularTotal() {
+            let total = 2500; // Valor básico sempre incluído
+            
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#basico)');
+            const pacotesSelecionados = [];
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    if (checkbox.dataset.tipo === 'pacote') {
+                        pacotesSelecionados.push({
+                            elemento: checkbox,
+                            valor: parseInt(checkbox.dataset.valor)
+                        });
+                    } else {
+                        total += parseInt(checkbox.dataset.valor || 0);
+                    }
+                }
+            });
+            
+            // Se houver pacotes selecionados, usar o maior valor
+            if (pacotesSelecionados.length > 0) {
+                const maiorPacote = pacotesSelecionados.reduce((maior, atual) => 
+                    atual.valor > maior.valor ? atual : maior
+                );
+                total = maiorPacote.valor;
+            }
+            
+            document.getElementById('total').innerHTML = `<strong>R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
+        }
+        
+        function resetar() {
+            document.querySelectorAll('input[type="checkbox"]:not(#basico)').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            calcularTotal();
+        }
+        
+        function selecionarIntermediario() {
+            resetar();
+            document.getElementById('pacote-inter').checked = true;
+            calcularTotal();
+        }
+        
+        function selecionarCompleto() {
+            resetar();
+            document.getElementById('pacote-completo').checked = true;
+            calcularTotal();
+        }
+        
+        // Event listeners para recalcular ao marcar/desmarcar
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', calcularTotal);
+        });
+        
+        // Inicializar
+        calcularTotal();
+    </script>
+</body>
+</html>
