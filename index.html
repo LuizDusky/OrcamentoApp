@@ -52,7 +52,9 @@
             text-align: left;
             border-bottom: 1px solid #e9ecef;
         }
-
+		table thead th:last-child {
+   			text-align: right; /* só o último th, que é "Valor (R$)" */
+		}
         th {
             background: #495057;
             color: white;
@@ -61,6 +63,7 @@
             top: 0;
             z-index: 10;
         }
+          
 
         .categoria {
             background: #6c757d;
@@ -262,7 +265,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>💼 Orçamento - App</h1>
+            <h1>💼 Orçamento - App de viagens</h1>
         </div>
 
         <div class="content">
