@@ -17,9 +17,8 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            /* IMPORTANTE: não usar overflow:hidden aqui (impedia o sticky funcionar corretamente) */
             overflow: visible;
-            padding-bottom: 0; /* garantimos que o conteúdo ocupe espaço para o sticky */
+            padding-bottom: 0;
         }
 
         .header {
@@ -36,9 +35,8 @@
             font-size: 24px;
         }
 
-        /* Wrapper que contém a tabela e o sticky total */
         .content {
-            position: relative; /* escopo visual (o sticky respeita o container onde ele está) */
+            position: relative;
         }
 
         table {
@@ -53,7 +51,7 @@
             border-bottom: 1px solid #e9ecef;
         }
 		table thead th:last-child {
-   			text-align: right; /* só o último th, que é "Valor (R$)" */
+   			text-align: right;
 		}
         th {
             background: #495057;
@@ -93,7 +91,7 @@
             white-space: nowrap;
         }
 
-        /* Barra de total separada e "pegajosa" */
+        
         .sticky-total {
             position: sticky;
             bottom: 0;
@@ -566,7 +564,7 @@
                 </tbody>
             </table>
 
-            <!-- Sticky total (fora da tabela para garantir comportamento consistente) -->
+            <!-- Sticky total -->
             <div class="sticky-total" id="sticky-total">
                 <div class="label">💰 <strong>TOTAL DO ORÇAMENTO</strong></div>
                 <div id="total" class="valor"><strong>R$ 2.000,00</strong></div>
@@ -598,7 +596,7 @@
             document.getElementById('total').innerHTML = `<strong>R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
         }
 
-        // Correção da função toggleDetalhes para receber o próprio botão (this)
+        
         function toggleDetalhes(elementoId, botao) {
             const detalhes = document.getElementById(elementoId);
 
@@ -615,12 +613,12 @@
             }
         }
 
-        // Event listeners para recalcular ao marcar/desmarcar
+        
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener('change', calcularTotal);
         });
 
-        // Inicializa o total
+        
         calcularTotal();
     </script>
 </body>
