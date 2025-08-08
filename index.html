@@ -88,7 +88,7 @@
             font-size: 16px;
             position: sticky;  /* Faz ela "colar" no fim da tela */
             bottom: 0;         /* Colada ao rodapé da viewport */
-            z-index: 5;        /* Fica acima das outras linhas da tabela */
+            z-index: 5; 
         }
         
         .total-section td {
@@ -231,40 +231,363 @@
 </head>
 <body>
     <div class="container">
-        <!-- todo o conteúdo da tabela permanece igual -->
-        <!-- ... -->
+        <div class="header">
+            <h1>💼 Orçamento - App</h1>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Selecionar</th>
+                    <th>Item</th>
+                    <th>Descrição</th>
+                    <th>Valor (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Pacote Básico -->
+                <tr class="categoria">
+                    <td colspan="4">📱 PACOTE BÁSICO</td>
+                </tr>
+                <tr class="basico">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" id="basico" checked disabled>
+                    </td>
+                    <td><strong>App Base</strong></td>
+                    <td>Interface básica, formulário no Google Sheets e até 3 telas principais</td>
+                    <td class="valor">2.000,00</td>
+                </tr>
+                
+                <!-- Autenticação -->
+                <tr class="categoria">
+                    <td colspan="4">🔐 AUTENTICAÇÃO E SEGURANÇA</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="auth-google" data-valor="400"></td>
+                    <td>
+                        Autenticação Google*
+                        <button class="expandir-btn" onclick="toggleDetalhes('auth-google-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="auth-google-detalhes" class="detalhes">
+                            <h4>🔐 Autenticação Google</h4>
+                            <img src="https://www.fabricadecodigo.com/wp-content/uploads/2016/02/image06.png" alt="Exemplo de tela de login social">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Botão "Entrar com Google"</p>
+                            <p>• Configuração da API do Google</p>
+                            <p>• Criação automática de conta no primeiro login</p>
+                            <p>• Sincronização de dados básicos (nome, email, foto, etc)</p>
+                            <p><strong>Benefícios:</strong> Login mais rápido, menos abandono de usuários, dados atualizados automaticamente</p>
+                            <p><strong>Observação:</strong> Cliente precisa criar contas de desenvolvedor no Google</p>
+                        </div>
+                    </td>
+                    <td>Login social integrado</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="login-custom" data-valor="600"></td>
+                    <td>
+                        Sistema de login personalizado
+                        <button class="expandir-btn" onclick="toggleDetalhes('login-custom-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="login-custom-detalhes" class="detalhes">
+                            <h4>🔑 Sistema de Login Personalizado</h4>
+                            <img src="https://community.e-com.plus/uploads/default/original/2X/c/cddc62af80902c98e21ffaa71c7898b2369ef7fa.png" alt="Exemplo de tela de login personalizada">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Tela de cadastro com validação de email</p>
+                            <p>• Tela de login com email e senha</p>
+                            <p>• Validações de segurança (senha forte, email válido)</p>
+                            <p>• Sistema de confirmação por email</p>
+                            <p>• Proteção contra tentativas de hack</p>
+                            <p><strong>Benefícios:</strong> Controle total dos dados, personalização completa da experiência</p>
+                        </div>
+                    </td>
+                    <td>Login com email/senha próprio</td>
+                    <td class="valor">600,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="recuperar-senha" data-valor="300"></td>
+                    <td>Recuperação de senha*</td>
+                    <td>Sistema de reset por email</td>
+                    <td class="valor">300,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="criptografia" data-valor="500"></td>
+                    <td>Criptografia de dados</td>
+                    <td>Segurança avançada dos dados</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                
+                <!-- Gestão de Clientes -->
+                <tr class="categoria">
+                    <td colspan="4">👥 GESTÃO DE CLIENTES</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="cadastro-completo" data-valor="700"></td>
+                    <td>Cadastro completo de clientes</td>
+                    <td>Formulário detalhado + validações</td>
+                    <td class="valor">700,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="historico" data-valor="250"></td>
+                    <td>Histórico de viagens</td>
+                    <td>Listagem de agendamentos anteriores</td>
+                    <td class="valor">250,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="favoritos" data-valor="200"></td>
+                    <td>Sistema de favoritos</td>
+                    <td>Salvar destinos preferidos</td>
+                    <td class="valor">200,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="perfil" data-valor="350"></td>
+                    <td>Perfil editável</td>
+                    <td>Tela para editar dados pessoais</td>
+                    <td class="valor">350,00</td>
+                </tr>
+                
+                <!-- Notificações -->
+                <tr class="categoria">
+                    <td colspan="4">🔔 NOTIFICAÇÕES E COMUNICAÇÃO</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="push" data-valor="500"></td>
+                    <td>
+                        Notificações push*
+                        <button class="expandir-btn" onclick="toggleDetalhes('push-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="push-detalhes" class="detalhes">
+                            <h4>🔔 Notificações Push</h4>
+                            <img src="https://miro.medium.com/v2/resize:fit:800/1*DBhQ6-1Vbnx9cxTlaXK2lA.png" alt="Exemplo de notificação push no celular">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Configuração do Firebase Cloud Messaging</p>
+                            <p>• Envio automático de confirmações de agendamento</p>
+                            <p>• Lembretes 1 dia antes da viagem</p>
+                            <p>• Notificações de promoções e ofertas</p>
+                            <p>• Painel para enviar notificações personalizadas</p>
+                            <p><strong>Benefícios:</strong> Melhora engajamento, reduz no-show, aumenta vendas</p>
+                            <p><strong>Funciona mesmo com o app fechado!</strong></p>
+                        </div>
+                    </td>
+                    <td>Alertas no celular</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="email-notif" data-valor="400"></td>
+                    <td>Notificações por email*</td>
+                    <td>Confirmações e lembretes</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="chat" data-valor="1200"></td>
+                    <td>Sistema de mensagens</td>
+                    <td>Chat integrado no app</td>
+                    <td class="valor">1.200,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="lembretes" data-valor="250"></td>
+                    <td>Lembretes automáticos</td>
+                    <td>Avisos programados</td>
+                    <td class="valor">250,00</td>
+                </tr>
+                
+                <!-- Pagamentos -->
+                <tr class="categoria">
+                    <td colspan="4">💳 PAGAMENTOS E VENDAS</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="gateway" data-valor="1500"></td>
+                    <td>
+                        Gateway de pagamento*
+                        <button class="expandir-btn" onclick="toggleDetalhes('gateway-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="gateway-detalhes" class="detalhes">
+                            <h4>💳 Gateway de Pagamento</h4>
+                            <img src="https://inn.cash/static/media/image-payment-gateway.11b0f9f34aa682685024.webp" alt="Exemplo de tela de pagamento">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Integração com Mercado Pago, PagSeguro ou PicPay</p>
+                            <p>• Pagamento por cartão, PIX, boleto</p>
+                            <p>• Tela de checkout segura</p>
+                            <p>• Confirmação automática de pagamentos</p>
+                            <p>• Histórico de transações</p>
+                            <p>• Geração de recibos</p>
+                            <p><strong>Benefícios:</strong> Pagamento imediato, menos inadimplência, processo automatizado</p>
+                            <p><strong>Cliente precisa:</strong> Conta no gateway escolhido (taxas próprias aplicáveis)</p>
+                        </div>
+                    </td>
+                    <td>PicPay/Mercado Pago integrado</td>
+                    <td class="valor">1.500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="carrinho" data-valor="400"></td>
+                    <td>Carrinho de compras</td>
+                    <td>Múltiplos itens por pedido</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="cupons" data-valor="300"></td>
+                    <td>Sistema de cupons</td>
+                    <td>Descontos promocionais</td>
+                    <td class="valor">300,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="relatorios-vendas" data-valor="350"></td>
+                    <td>Relatórios de vendas</td>
+                    <td>Formulário de faturamento</td>
+                    <td class="valor">350,00</td>
+                </tr>
+                
+                <!-- Funcionalidades Avançadas -->
+                <tr class="categoria">
+                    <td colspan="4">⚡ FUNCIONALIDADES AVANÇADAS</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="busca" data-valor="400"></td>
+                    <td>Busca e filtros avançados</td>
+                    <td>Pesquisa por preço, data, local</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="maps" data-valor="900"></td>
+                    <td>
+                        Google Maps integrado*
+                        <button class="expandir-btn" onclick="toggleDetalhes('maps-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="maps-detalhes" class="detalhes">
+                            <h4>🗺️ Google Maps Integrado</h4>
+                            <img src="https://developers.google.com/static/maps/images/landing/react-codelab-thumbnail.png?hl=pt-br" alt="Exemplo de mapa no app">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Mapa interativo dentro do app</p>
+                            <p>• Localização dos pontos de embarque</p>
+                            <p>• Rotas e direções para o destino</p>
+                            <p>• Estimativa de tempo de chegada</p>
+                            <p>• Marcadores personalizados dos destinos</p>
+                            <p>• GPS para acompanhar a viagem</p>
+                            <p><strong>Benefícios:</strong> Melhor experiência do usuário, menos dúvidas sobre localização</p>
+                            <p><strong>Cliente precisa:</strong> API Key do Google Maps (cobrança conforme uso)</p>
+                        </div>
+                    </td>
+                    <td>Mapas e localização</td>
+                    <td class="valor">900,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="avaliacoes" data-valor="500"></td>
+                    <td>Sistema de avaliações</td>
+                    <td>Estrelas e comentários</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="offline" data-valor="1000"></td>
+                    <td>Modo offline básico</td>
+                    <td>Funciona sem internet</td>
+                    <td class="valor">1.000,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="social" data-valor="400"></td>
+                    <td>Compartilhamento social</td>
+                    <td>Integração redes sociais</td>
+                    <td class="valor">400,00</td>
+                </tr>
+                
+                <!-- Gestão -->
+                <tr class="categoria">
+                    <td colspan="4">📊 GESTÃO E ANALYTICS</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="painel-admin" data-valor="1500"></td>
+                    <td>
+                        Painel administrativo web*
+                        <button class="expandir-btn" onclick="toggleDetalhes('painel-admin-detalhes')" title="Ver detalhes">▼</button>
+                        <div id="painel-admin-detalhes" class="detalhes">
+                            <h4>📊 Painel Administrativo Web</h4>
+                            <img src="https://www.cesarlopes.com/site/wp-content/uploads/2020/07/adminlte-1024x596.png" alt="Exemplo de dashboard administrativo">
+                            <p><strong>O que inclui:</strong></p>
+                            <p>• Dashboard com métricas em tempo real</p>
+                            <p>• Lista completa de agendamentos</p>
+                            <p>• Gestão de destinos e preços</p>
+                            <p>• Envio de notificações em massa</p>
+                            <p>• Relatórios de vendas e receita</p>
+                            <p>• Sistema de usuários administrativos</p>
+                            <p>• Exportação de dados para Excel</p>
+                            <p><strong>Benefícios:</strong> Controle total do negócio, acesso de qualquer computador</p>
+                            <p><strong>Requer:</strong> Hospedagem web (cerca de R$ 20-50/mês)</p>
+                        </div>
+                    </td>
+                    <td>Dashboard para gerenciar tudo</td>
+                    <td class="valor">1.500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="analytics" data-valor="800"></td>
+                    <td>Relatórios e analytics</td>
+                    <td>Métricas de uso e vendas</td>
+                    <td class="valor">800,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="backup" data-valor="500"></td>
+                    <td>Backup automático*</td>
+                    <td>Segurança dos dados</td>
+                    <td class="valor">500,00</td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><input type="checkbox" id="sync" data-valor="600"></td>
+                    <td>Sincronização multi-dispositivos</td>
+                    <td>Dados em tempo real</td>
+                    <td class="valor">600,00</td>
+                </tr>
+                
+                <!-- Total -->
+                <tr class="total-section">
+                    <td colspan="3"><strong>💰 TOTAL DO ORÇAMENTO</strong></td>
+                    <td class="valor" id="total"><strong>R$ 2.000,00</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="obs">
+            <h3>📋 Observações Importantes:</h3>
+            <p><strong>• Prazo:</strong> 2-8 semanas (variando conforme funcionalidades selecionadas)</p>
+            <p><strong>• Pagamento:</strong> 50% na assinatura + 50% na entrega</p>
+            <p><strong>• Revisões:</strong> Até 3 revisões incluídas</p>
+            <p><strong>• Garantia:</strong> 30 dias para correção de bugs</p>
+            <p><strong>• Manutenção:</strong> R$ 300,00/mês (opcional)</p>
+            <p>* Esta funcionalidade depende de licença/assinatura a qual o cliente é responsável</p>
+        </div>
     </div>
 
     <script>
         function calcularTotal() {
             let total = 2000; // Valor básico sempre incluído
+            
             const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#basico)');
+            
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
                     total += parseInt(checkbox.dataset.valor || 0);
                 }
             });
-            document.getElementById('total').innerHTML = `<strong>R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
+            
+            document.getElementById('total').innerHTML = <strong>R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>;
         }
         
+        // Event listeners para recalcular ao marcar/desmarcar
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener('change', calcularTotal);
         });
         
+        // Função para expandir/contrair detalhes
         function toggleDetalhes(elementoId) {
             const detalhes = document.getElementById(elementoId);
             const botao = event.target;
+            
             if (detalhes.classList.contains('visivel')) {
+                // Fechar
                 detalhes.classList.remove('visivel');
                 botao.innerHTML = '▼';
                 botao.classList.remove('aberto');
             } else {
+                // Abrir
                 detalhes.classList.add('visivel');
                 botao.innerHTML = '▲';
                 botao.classList.add('aberto');
             }
         }
         
+        // Inicializar
         calcularTotal();
     </script>
 </body>
