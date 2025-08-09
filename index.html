@@ -30,7 +30,6 @@
             padding-bottom: 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             justify-content: center;
-             transform-origin: top center;
         }
         
        
@@ -39,6 +38,9 @@
           width: 100%;
             border-collapse: collapse;
             max-width: 1200px;
+            white-space: normal;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         thead {
       
@@ -89,7 +91,7 @@
 
         .checkbox-cell {
             text-align: center;
-            width: 50px;
+            width: 5px;
         }
 
         input[type="checkbox"] {
@@ -109,17 +111,27 @@
             z-index: 15;
         }
 
-        .obs {
-            background: #f3f4f6;
-            padding: 20px;
-            font-size: 0.95rem;
-            color: #555;
-            border-top: 1px solid #e0e0e0;
-        }
+      .obs {
+    position: sticky;
+    background: #f3f4f6;
+    font-size: 0.95rem;
+    color: #555;
+    border-top: 1px solid #e0e0e0;
+    max-width: 1200px;
+    margin: 16px auto;
+    padding: 16px;
+    text-align: left; 
+    box-sizing: border-box;
+}
         .obs h3 {
-            color: #495057;
-            margin-top: 0;
-        }
+    margin-top: 0;
+    color: #495057;
+}
+
+.obs p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
  .expandir-btn {
             cursor: pointer;
             background: none;
@@ -167,7 +179,7 @@
         }
 
         .detalhes img {
-            max-width: 250px;
+            max-width: 500px;
             border-radius: 12px;
             border: 1px solid #ddd;
             margin: 10px 0;
@@ -208,7 +220,7 @@
             }
             
             .detalhes img {
-                max-width: 200px;
+                max-width: 400px;
             }
         }
 
@@ -287,7 +299,7 @@
             }
             
             .detalhes img {
-                max-width: 150px;
+                max-width: 300px;
             }
         }
 
@@ -360,12 +372,12 @@
             }
             
             .detalhes img {
-                max-width: 120px;
+                max-width: 240px;
             }
         }
 
         /* Celular muito pequeno */
-        @media (max-width: 320px) {
+        @media (max-width: 469px) {
             h1 {
                 font-size: 1rem;
             }
@@ -385,6 +397,9 @@
             .sticky-total {
                 font-size: 0.6rem;
             }
+            .detalhes img {
+                max-width: 120px;
+            }
         }
     </style>
 </head>
@@ -397,10 +412,10 @@
         <table>
             <thead>
                 <tr>
-                    <th>Selecionar</th>
+                    <th>Sel.</th>
                     <th>Item</th>
                     <th>Descrição</th>
-                    <th class="valor">Valor (R$)</th>
+                    <th class="valor">Valor</th>
                 </tr>
             </thead>
             <tbody>
@@ -706,7 +721,6 @@
             <p><strong>• Garantia:</strong> 30 dias para correção de bugs</p>
             <p>* Esta funcionalidade depende de licença/assinatura a qual o cliente é responsável</p>
         </div>
-    </div>
 
     <script>
         function calcularTotal() {
