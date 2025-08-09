@@ -193,6 +193,1208 @@
 .category-section.collapsed .features-list {
     max-height: 0;
     opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.1s ease;
+    padding: 0 20px;
+}
+
+.category-section.collapsed .features-list .feature-item {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease-out;
+}
+      .category-section:not(.collapsed) .features-list .feature-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.category-section:not(.collapsed) .features-list .feature-item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.category-section:not(.collapsed) .features-list .feature-item:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.category-section:not(.collapsed) .features-list .feature-item:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.category-section:not(.collapsed) .features-list .feature-item:nth-child(4) {
+    transition-delay: 0.4s;
+}
+.category-section:not(.collapsed) .features-list .feature-item:nth-child(4) {
+    transition-delay: 0.5s;
+}
+
+        .feature-item {
+            background: white;
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px;
+            border: 1px solid #e5e5e7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .feature-item:last-child {
+            margin-bottom: 20px;
+        }
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(103, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-item:hover::before {
+            left: 100%;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            backdrop-filter: blur(20px);
+        }
+
+        .feature-item.selected .feature-price {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .feature-item.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .feature-checkbox {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #d1d1d6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-right: 16px;
+            flex-shrink: 0;
+            user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .feature-item.selected .custom-checkbox {
+            border-color: white;
+            background: white;
+        }
+
+        .feature-item:not(.selected) .custom-checkbox:hover {
+            border-color: #667eea;
+        }
+
+        .custom-checkbox::after {
+            content: '✓';
+            color: #667eea;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+
+        .feature-item.selected .custom-checkbox::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .feature-content {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .feature-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .feature-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .feature-description {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .feature-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #667eea;
+            white-space: nowrap;
+            margin-left: 16px;
+        }
+
+        .expand-btn {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 8px;
+            padding: 0;
+            user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            backdrop-filter: blur(20px);
+        }
+
+        .feature-item.selected .expand-btn {
+            color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .feature-details-expanded {
+            background: rgba(103, 126, 234, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            display: none;
+            border: 1px solid rgba(103, 126, 234, 0.1);
+        }
+
+        .feature-item.selected .feature-details-expanded {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-details-expanded.visible {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .feature-details-expanded h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #667eea;
+        }
+
+        .feature-item.selected .feature-details-expanded h4 {
+            color: white;
+        }
+
+        .feature-details-expanded img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            margin: 12px 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-details-expanded p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .mask-block{
+              position: sticky;
+              bottom: 0;
+              box-shadow: 0 10px 30px rgba(255, 255, 255, 1);
+              height: 24px; 
+              background: #f5f5f7
+              z-index: 50;
+        }
+        
+        .total-section {
+            background: linear-gradient(135deg, #1d1d1f, #4d4d4f);
+            margin-top: -24px;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 
+                0 -8px 32px rgba(0, 0, 0, 0.3),
+                0 1px 0 rgba(255, 255, 255, 0.1) inset;
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 1);
+            border-left: 1px solid rgba(255, 255, 255, 1);
+            border-right: 1px solid rgba(255, 255, 255, 1);
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .total-label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .total-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .notes-section {
+          position: sticky;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            border-radius: 20px;
+            max-width: 1200px;
+            margin: 16px auto;
+            padding: 16px;
+            
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .notes-title {
+            font-size: 1.4rem;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+        }
+
+        .notes-list {
+            display: grid;
+            gap: 12px;
+            text-align: left; 
+        }
+
+        .note-item {
+          
+            padding: 12px 16px;
+            background: rgba(103, 126, 234, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            font-size: 0.95rem;
+        }
+
+        .note-item strong {
+            color: #667eea;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 720px) {
+            .hero-section {
+                padding: 60px 20px 40px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+
+            .total-section {
+                padding: 18px 15px;
+                font-size: 0.6rem;
+            }
+
+            .feature-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .feature-price {
+                margin-left: 0;
+                margin-top: 8px;
+                text-align: left;
+            }
+
+            .total-value {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1rem;
+            }
+
+            .feature-item {
+                padding: 16px;
+            }
+
+            .feature-details-expanded img {
+                max-width: 250px;
+                align-content: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .loading.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+      <a href="/" class="logo-link">
+        <img src="https://i.ibb.co/4wfzG6qV/Gemini-Generated-Image-osss6cosss6cosss.png" alt="ALBIZ" class="logo" width="100">
+    </a>
+        <h1 class="hero-title">APLICATIVO DE AGENDAMENTOS</h1>
+    </div>
+
+    <div class="container">
+        <div class="pricing-card loading">
+            <div class="card-header">
+                <h2 class="card-title">Configure seu projeto</h2>
+            </div>
+
+            <div class="features-grid">
+                <!-- Pacote Básico -->
+                <div class="category-section collapsed">
+                    <div class="category-header">
+                        <span class="category-icon">📱</span>
+                        <span class="category-title">Pacote Básico</span>
+                        <span class="category-chevron">▼</span>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item selected disabled">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">App Base</div>
+                                    <div class="feature-description">Interface básica, formulário no Google Sheets e até 3 telas principais</div>
+                                </div>
+                                <div class="feature-price">R$ 2.000</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" id="basico" checked disabled data-valor="2000">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autenticação -->
+                <div class="category-section collapsed">
+                    <div class="category-header">
+                        <span class="category-icon">🔐</span>
+                        <span class="category-title">Autenticação e Segurança</span>
+                        <span class="category-chevron">▼</span>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Autenticação Google</div>
+                                    <div class="feature-description">Login social integrado com conta Google</div>
+                                    <button class="expand-btn" onclick="toggleDetails('auth-google-details', this)">Mais detalhes</button>
+                                    <div class="feature-details-expanded" id="auth-google-details">
+                                        <h4>🔐 Autenticação Google</h4>
+                                        <img src="https://www.fabricadecodigo.com/wp-content/uploads/2016/02/image06.png" alt="Login Google">
+                                        <p><strong>Incluído:</strong></p>
+                                        <p>• Botão "Entrar com Google"</p>
+                                        <p>• Configuração da API do Google</p>
+                                        <p>• Criação automática de conta</p>
+                                        <p>• Sincronização de dados básicos</p>
+                                        <p><strong>Benefícios:</strong> Login mais rápido, menos abandono de usuários e dados atualizados</p>
+                                    </div>
+                                </div>
+                                <div class="feature-price">R$ 400</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="400">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Sistema de Login Personalizado</div>
+                                    <div class="feature-description">Login com email/senha próprio do sistema</div>
+                                    <button class="expand-btn" onclick="toggleDetails('login-custom-details', this)">Mais detalhes</button>
+                                    <div class="feature-details-expanded" id="login-custom-details">
+                                        <h4>🔑 Sistema de Login Personalizado</h4>
+                                        <img src="https://community.e-com.plus/uploads/default/original/2X/c/cddc62af80902c98e21ffaa71c7898b2369ef7fa.png" alt="Login personalizado">
+                                        <p><strong>Incluído:</strong></p>
+                                        <p>• Tela de cadastro com validação</p>
+                                        <p>• Tela de login segura</p>
+                                        <p>• Validações de segurança</p>
+                                        <p>• Confirmação por email</p>
+                                    </div>
+                                </div>
+                                <div class="feature-price">R$ 600</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="600">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Recuperação de Senha</div>
+                                    <div class="feature-description">Sistema de reset por email</div>
+                                </div>
+                                <div class="feature-price">R$ 300</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="300">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Criptografia de Dados</div>
+                                    <div class="feature-description">Segurança avançada para todos os dados</div>
+                                </div>
+                                <div class="feature-price">R$ 500</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestão de Clientes -->
+                <div class="category-section collapsed">
+                    <div class="category-header">
+                        <span class="category-icon">👥</span>
+                        <span class="category-title">Gestão de Clientes</span>
+                        <span class="category-chevron">▼</span>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Cadastro Completo de Clientes</div>
+                                    <div class="feature-description">Formulário detalhado com validações</div>
+                                </div>
+                                <div class="feature-price">R$ 700</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="700">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Histórico de Viagens</div>
+                                    <div class="feature-description">Listagem de agendamentos anteriores</div>
+                                </div>
+                                <div class="feature-price">R$ 250</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="250">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Sistema de Favoritos</div>
+                                    <div class="feature-description">Salvar destinos preferidos</div>
+                                </div>
+                                <div class="feature-price">R$ 200</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="200">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Perfil Editável</div>
+                                    <div class="feature-description">Tela para editar dados pessoais</div>
+                                </div>
+                                <div class="feature-price">R$ 350</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="350">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notificações -->
+                <div class="category-section collapsed">
+                    <div class="category-header">
+                        <span class="category-icon">🔔</span>
+                        <span class="category-title">Notificações e Comunicação</span>
+                        <span class="category-chevron">▼</span>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Notificações Push</div>
+                                    <div class="feature-description">Alertas no celular em tempo real</div>
+                                    <button class="expand-btn" onclick="toggleDetails('push-details', this)">Mais detalhes</button>
+                                    <div class="feature-details-expanded" id="push-details">
+                                        <h4>🔔 Notificações Push</h4>
+                                        <img src="https://miro.medium.com/v2/resize:fit:800/1*DBhQ6-1Vbnx9cxTlaXK2lA.png" alt="Push notifications">
+                                        <p><strong>Incluído:</strong></p>
+                                        <p>• Configuração do Firebase</p>
+                                        <p>• Confirmações automáticas</p>
+                                        <p>• Lembretes programados</p>
+                                        <p>• Notificações promocionais</p>
+                                        <p><strong>Funciona mesmo com o app fechado!</strong></p>
+                                    </div>
+                                </div>
+                                <div class="feature-price">R$ 500</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="500">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Notificações por Email</div>
+                                    <div class="feature-description">Confirmações e lembretes automáticos</div>
+                                </div>
+                                <div class="feature-price">R$ 400</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="400">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Sistema de Mensagens</div>
+                                    <div class="feature-description">Chat integrado no aplicativo</div>
+                                </div>
+                                <div class="feature-price">R$ 1.200</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="1200">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Lembretes Automáticos</div>
+                                    <div class="feature-description">Avisos programados personalizados</div>
+                                </div>
+                                <div class="feature-price">R$ 250</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="250">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagamentos -->
+                <div class="category-section collapsed">
+                    <div class="category-header">
+                        <span class="category-icon">💳</span>
+                        <span class="category-title">Pagamentos e Vendas</span>
+                        <span class="category-chevron">▼</span>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Gateway de Pagamento</div>
+                                    <div class="feature-description">Mercado Pago/PagSeguro/PicPay integrado</div>
+                                    <button class="expand-btn" onclick="toggleDetails('gateway-details', this)">Mais detalhes</button>
+                                    <div class="feature-details-expanded" id="gateway-details">
+                                        <h4>💳 Gateway de Pagamento</h4>
+                                        <img src="https://inn.cash/static/media/image-payment-gateway.11b0f9f34aa682685024.webp" alt="Gateway pagamento">
+                                        <p><strong>Incluído:</strong></p>
+                                        <p>• Integração completa</p>
+                                        <p>• Pagamento por cartão, PIX, boleto</p>
+                                        <p>• Checkout seguro</p>
+                                        <p>• Confirmação automática</p>
+                                        <p>• Histórico de transações</p>
+                                    </div>
+                                </div>
+                                <div class="feature-price">R$ 1.500</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="1500">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Carrinho de Compras</div>
+                                    <div class="feature-description">Múltiplos itens por pedido</div>
+                                </div>
+                                <div class="feature-price">R$ 400</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="400">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Sistema de Cupons</div>
+                                    <div class="feature-description">Descontos promocionais avançados</div>
+                                </div>
+                                <div class="feature-price">R$ 300</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="300">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Relatórios de Vendas</div>
+                                    <div class="feature-description">Dashboard completo de faturamento</div>
+                                </div>
+                                <div class="feature-price">R$ 350</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="350">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funcionalidades Avançadas -->
+                <div class="category-section collapsed">
+                    <div class="category-header">
+                        <span class="category-icon">⚡</span>
+                        <span class="category-title">Funcionalidades Avançadas</span>
+                        <span class="category-chevron">▼</span>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Busca e Filtros Avançados</div>
+                                    <div class="feature-description">Pesquisa por preço, data, localização</div>
+                                </div>
+                                <div class="feature-price">R$ 400</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="400">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Google Maps Integrado</div>
+                                    <div class="feature-description">Mapas e sistema de localização</div>
+                                    <button class="expand-btn" onclick="toggleDetails('maps-details', this)">Mais detalhes</button>
+                                    <div class="feature-details-expanded" id="maps-details">
+                                        <h4>🗺️ Google Maps Integrado</h4>
+                                        <img src="https://developers.google.com/static/maps/images/landing/react-codelab-thumbnail.png?hl=pt-br" alt="Google Maps">
+                                        <p><strong>Incluído:</strong></p>
+                                        <p>• Mapa interativo no app</p>
+                                        <p>• Localização dos pontos</p>
+                                        <p>• Rotas e direções</p>
+                                        <p>• Estimativa de tempo</p>
+                                        <p>• GPS para acompanhar viagem</p>
+                                    </div>
+                                </div>
+                                <div class="feature-price">R$ 900</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="900">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Sistema de Avaliações</div>
+                                    <div class="feature-description">Estrelas e comentários dos usuários</div>
+                                </div>
+                                <div class="feature-price">R$ 500</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="500">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Modo Offline Básico</div>
+                                    <div class="feature-description">Funcionalidades sem conexão</div>
+                                </div>
+                                <div class="feature-price">R$ 1.000</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="1000">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Compartilhamento Social</div>
+                                    <div class="feature-description">Integração com redes sociais</div>
+                                </div>
+                                <div class="feature-price">R$ 400</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="400">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestão e Analytics -->
+                <div class="category-section collapsed">
+                    <div class="category-header">
+                        <span class="category-icon">📊</span>
+                        <span class="category-title">Gestão e Analytics</span>
+                        <span class="category-chevron">▼</span>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Painel Administrativo Web</div>
+                                    <div class="feature-description">Dashboard completo para gestão</div>
+                                    <button class="expand-btn" onclick="toggleDetails('admin-details', this)">Mais detalhes</button>
+                                    <div class="feature-details-expanded" id="admin-details">
+                                        <h4>📊 Painel Administrativo Web</h4>
+                                        <img src="https://www.cesarlopes.com/site/wp-content/uploads/2020/07/adminlte-1024x596.png" alt="Dashboard admin">
+                                        <p><strong>Incluído:</strong></p>
+                                        <p>• Dashboard com métricas</p>
+                                        <p>• Lista de agendamentos</p>
+                                        <p>• Gestão de destinos e preços</p>
+                                        <p>• Envio de notificações</p>
+                                        <p>• Relatórios completos</p>
+                                        <p>• Exportação para Google Sheets</p>
+                                    </div>
+                                </div>
+                                <div class="feature-price">R$ 1.500</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="1500">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Relatórios e Analytics</div>
+                                    <div class="feature-description">Métricas avançadas de uso e vendas</div>
+                                </div>
+                                <div class="feature-price">R$ 800</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="800">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Backup Automático</div>
+                                    <div class="feature-description">Proteção e segurança dos dados</div>
+                                </div>
+                                <div class="feature-price">R$ 500</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="500">
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-content">
+                                <div class="custom-checkbox"></div>
+                                <div class="feature-details">
+                                    <div class="feature-name">Sincronização Multi-dispositivos</div>
+                                    <div class="feature-description">Dados em tempo real em todos os aparelhos</div>
+                                </div>
+                                <div class="feature-price">R$ 600</div>
+                            </div>
+                            <input type="checkbox" class="feature-checkbox" data-valor="600">
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="mask-block">
+              
+          </div>
+          <div class="total-section">
+              <div class="total-label">Total do Orçamento</div>
+              <div class="total-value" id="total-value">R$ 2.000</div>
+          </div>
+        </div>
+
+        <div class="notes-section loading">
+            <div class="notes-list">
+                <div class="note-item">
+                    <strong>Prazo:</strong> Entre 2 a 8 semanas dependendo das funcionalidades selecionadas
+                </div>
+                <div class="note-item">
+                    <strong>Pagamento:</strong> 50% na assinatura do contrato + 50% na entrega final
+                </div>
+                <div class="note-item">
+                    <strong>Revisões:</strong> Até 3 revisões incluídas no projeto sem custo adicional
+                </div>
+                <div class="note-item">
+                    <strong>Garantia:</strong> 30 dias para correção de bugs após a entrega
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cálculo do total
+        function calculateTotal() {
+            let total = 2000; // Pacote básico
+            document.querySelectorAll('.feature-checkbox:not(#basico)').forEach(checkbox => {
+                if (checkbox.checked) {
+                    total += parseInt(checkbox.dataset.valor || 0);
+                }
+            });
+            
+            document.getElementById('total-value').textContent = 
+                `R$ ${total.toLocaleString('pt-BR')}`;
+        }
+
+        // Toggle de detalhes expandidos
+      function toggleDetails(detailsId, button) {
+    const details = document.getElementById(detailsId);
+    const isVisible = details.classList.toggle('visible');
+
+    if (isVisible) {
+        button.textContent = 'Menos detalhes';
+    } else {
+        button.textContent = 'Mais detalhes';
+    }
+}
+
+        // Toggle de categorias
+        function toggleCategory(categorySection) {
+            categorySection.classList.toggle('collapsed');
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loading animation
+            setTimeout(() => {
+                document.querySelectorAll('.loading').forEach(el => {
+                    el.classList.add('loaded');
+                });
+            }, 300);
+
+            // Checkbox listeners
+            document.querySelectorAll('.feature-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const featureItem = this.closest('.feature-item');
+                    featureItem.classList.toggle('selected', this.checked);
+                    calculateTotal();
+                });
+            });
+
+            // Category toggle listeners
+            document.querySelectorAll('.category-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const categorySection = this.closest('.category-section');
+                    toggleCategory(categorySection);
+                });
+            });
+
+            // Feature item click listeners
+            document.querySelectorAll('.feature-item:not(.disabled)').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Não ativar se clicou no botão de detalhes
+                    if (e.target.classList.contains('expand-btn')) return;
+                    
+                    const checkbox = this.querySelector('.feature-checkbox');
+                    checkbox.checked = !checkbox.checked;
+                    this.classList.toggle('selected', checkbox.checked);
+                    calculateTotal();
+                });
+            });
+
+            // Scroll suave para seções
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.style.transform = 'translateY(20px)';
+                section.style.opacity = '0';
+                section.style.transition = 'all 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Pulse animation no total quando muda
+            const totalElement = document.getElementById('total-value');
+            const originalCalculateTotal = calculateTotal;
+            calculateTotal = function() {
+                originalCalculateTotal();
+                totalElement.classList.add('pulse');
+                setTimeout(() => totalElement.classList.remove('pulse'), 2000);
+            };
+
+            calculateTotal();
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App = Viagens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        button, input, select, textarea {
+            outline: none;
+            border: none;
+        }
+
+        button:focus, input:focus, select:focus, textarea:focus {
+            outline: none;
+            border: none;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f7
+            min-height: 100vh;
+            color: #1d1d1f;
+            line-height: 1.47059;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+    text-align: center;
+    padding: 80px 20px 80px;
+    background: 
+        linear-gradient(135deg, rgba(103, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
+        url('https://static.congressoemfoco.com.br/2022/06/onibus.jpeg');
+    background-size: cover;
+    background-position: center 70%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-section > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+           font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-weight: 600;
+            color: #f2f2f2;
+            margin-bottom: 40px;
+            line-height: 1.08349;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-top-left-radius: 18px;
+            border-top-right-radius: 24px;
+            overflow: hidden;
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.07),
+                0 1px 3px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #2d2d2f, #5d5d5f);
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-title {
+            font-size: clamp(1rem, 4vw, 2.5rem);
+            font-weight: 600;
+            margin: 10px;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.08349;
+        }
+
+        .features-grid {
+            padding: 0;
+        }
+
+
+        .category-section {
+            margin-bottom: 0px;
+        }
+        
+       
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            padding: 14px 14px;
+            margin-left: 20px;
+            margin-right: 20px;
+            background: linear-gradient(135deg, #f5f7fa, #f3f3f2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+         .category-header:first-child {
+             margin-top: 20px;
+        }
+        .category-header:last-child {
+             margin-bottom: 20px;
+        }
+        
+        
+
+        .category-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(225, 225, 227, 0.4);
+            border-radius: 6px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .category-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            flex: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .category-chevron {
+            font-size: 1rem;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .category-section.collapsed .category-chevron {
+            transform: rotate(-90deg);
+        }
+
+        .features-list {
+            display: grid;
+            gap: 12px;
+            margin-left: 0px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+.category-section.collapsed .features-list {
+    max-height: 0;
+    opacity: 0;
     transition: max-height 0.3s ease, opacity 0.3s ease;
     padding: 0 20px;
 }
