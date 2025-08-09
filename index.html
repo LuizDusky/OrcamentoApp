@@ -600,6 +600,9 @@
 </head>
 <body>
     <div class="hero-section">
+      <a href="/" class="logo-link">
+        <img src="https://i.ibb.co/4wfzG6qV/Gemini-Generated-Image-osss6cosss6cosss.png" alt="ALBIZ" class="logo" width="100">
+    </a>
         <h1 class="hero-title">App De Viagens</h1>
         <p class="hero-subtitle">Orçamento personalizado para o seu aplicativo</p>
     </div>
@@ -647,7 +650,7 @@
                                 <div class="feature-details">
                                     <div class="feature-name">Autenticação Google</div>
                                     <div class="feature-description">Login social integrado com conta Google</div>
-                                    <button class="expand-btn" onclick="toggleDetails('auth-google-details')">Ver detalhes</button>
+                                    <button class="expand-btn" onclick="toggleDetails('auth-google-details', this)">Mais detalhes</button>
                                     <div class="feature-details-expanded" id="auth-google-details">
                                         <h4>🔐 Autenticação Google</h4>
                                         <img src="https://www.fabricadecodigo.com/wp-content/uploads/2016/02/image06.png" alt="Login Google">
@@ -670,7 +673,7 @@
                                 <div class="feature-details">
                                     <div class="feature-name">Sistema de Login Personalizado</div>
                                     <div class="feature-description">Login com email/senha próprio do sistema</div>
-                                    <button class="expand-btn" onclick="toggleDetails('login-custom-details')">Ver detalhes</button>
+                                    <button class="expand-btn" onclick="toggleDetails('login-custom-details', this)">Mais detalhes</button>
                                     <div class="feature-details-expanded" id="login-custom-details">
                                         <h4>🔑 Sistema de Login Personalizado</h4>
                                         <img src="https://community.e-com.plus/uploads/default/original/2X/c/cddc62af80902c98e21ffaa71c7898b2369ef7fa.png" alt="Login personalizado">
@@ -784,7 +787,7 @@
                                 <div class="feature-details">
                                     <div class="feature-name">Notificações Push</div>
                                     <div class="feature-description">Alertas no celular em tempo real</div>
-                                    <button class="expand-btn" onclick="toggleDetails('push-details')">Ver detalhes</button>
+                                    <button class="expand-btn" onclick="toggleDetails('push-details', this)">Mais detalhes</button>
                                     <div class="feature-details-expanded" id="push-details">
                                         <h4>🔔 Notificações Push</h4>
                                         <img src="https://miro.medium.com/v2/resize:fit:800/1*DBhQ6-1Vbnx9cxTlaXK2lA.png" alt="Push notifications">
@@ -853,7 +856,7 @@
                                 <div class="feature-details">
                                     <div class="feature-name">Gateway de Pagamento</div>
                                     <div class="feature-description">Mercado Pago/PagSeguro/PicPay integrado</div>
-                                    <button class="expand-btn" onclick="toggleDetails('gateway-details')">Ver detalhes</button>
+                                    <button class="expand-btn" onclick="toggleDetails('gateway-details', this)">Mais detalhes</button>
                                     <div class="feature-details-expanded" id="gateway-details">
                                         <h4>💳 Gateway de Pagamento</h4>
                                         <img src="https://inn.cash/static/media/image-payment-gateway.11b0f9f34aa682685024.webp" alt="Gateway pagamento">
@@ -934,7 +937,7 @@
                                 <div class="feature-details">
                                     <div class="feature-name">Google Maps Integrado</div>
                                     <div class="feature-description">Mapas e sistema de localização</div>
-                                    <button class="expand-btn" onclick="toggleDetails('maps-details')">Ver detalhes</button>
+                                    <button class="expand-btn" onclick="toggleDetails('maps-details', this)">Mais detalhes</button>
                                     <div class="feature-details-expanded" id="maps-details">
                                         <h4>🗺️ Google Maps Integrado</h4>
                                         <img src="https://developers.google.com/static/maps/images/landing/react-codelab-thumbnail.png?hl=pt-br" alt="Google Maps">
@@ -1003,7 +1006,7 @@
                                 <div class="feature-details">
                                     <div class="feature-name">Painel Administrativo Web</div>
                                     <div class="feature-description">Dashboard completo para gestão</div>
-                                    <button class="expand-btn" onclick="toggleDetails('admin-details')">Ver detalhes</button>
+                                    <button class="expand-btn" onclick="toggleDetails('admin-details', this)">Mais detalhes</button>
                                     <div class="feature-details-expanded" id="admin-details">
                                         <h4>📊 Painel Administrativo Web</h4>
                                         <img src="https://www.cesarlopes.com/site/wp-content/uploads/2020/07/adminlte-1024x596.png" alt="Dashboard admin">
@@ -1104,10 +1107,16 @@
         }
 
         // Toggle de detalhes expandidos
-        function toggleDetails(detailsId) {
-            const details = document.getElementById(detailsId);
-            details.classList.toggle('visible');
-        }
+      function toggleDetails(detailsId, button) {
+    const details = document.getElementById(detailsId);
+    const isVisible = details.classList.toggle('visible');
+
+    if (isVisible) {
+        button.textContent = 'Menos detalhes';
+    } else {
+        button.textContent = 'Mais detalhes';
+    }
+}
 
         // Toggle de categorias
         function toggleCategory(categorySection) {
