@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Budget Pro</title>
+    <title>App = Viagens</title>
     <style>
         * {
             margin: 0;
@@ -23,28 +23,28 @@
 
         button:focus, input:focus, select:focus, textarea:focus {
             outline: none;
+            border: none;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            background: #667eea;
+            background: #f5f5f7
             min-height: 100vh;
             color: #1d1d1f;
-            line-height: 1.6;
+            line-height: 1.47059;
+            font-weight: 400;
             overflow-x: hidden;
         }
 
         .hero-section {
             text-align: center;
-            padding: 80px 20px 60px;
+            padding: 100px 20px 80px;
             background: 
                 linear-gradient(135deg, rgba(103, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
                 url('https://static.congressoemfoco.com.br/2022/06/onibus.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
         }
 
@@ -66,91 +66,84 @@
 
         .hero-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-weight: 600;
             color: white;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
             margin-bottom: 40px;
+            letter-spacing: -0.02em;
+            line-height: 1.08349;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0px auto 0px;
-            padding: 0 10px 0;
+            margin: -40px auto 0;
+            padding: 0 20px;
             position: relative;
-            z-index: 0;
+            z-index: 10;
         }
 
         .pricing-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(30px);
-            border-top-left-radius: 24px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-top-left-radius: 18px;
             border-top-right-radius: 24px;
             overflow: hidden;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.1),
-                0 1px 0px rgba(255, 255, 255, 0.8) inset;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.07),
+                0 1px 3px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             overflow: hidden;
         }
 
         .card-header {
-            background: linear-gradient(135deg, #1d1d1f, #2d2d2f);
-            padding: 30px;
+            background: linear-gradient(135deg, #2d2d2f, #5d5d5f);
+            padding: 15px;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .card-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
         }
 
         .card-title {
-            font-size: 1.8rem;
-            color: white;
+             font-size: clamp(1rem, 5vw, 4rem);
             font-weight: 600;
-            letter-spacing: -0.01em;
+            margin: 10px;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.08349;
         }
 
         .features-grid {
-          position: relative;
-            padding: 40px 30px;
+            padding: 0;
         }
 
 
         .category-section {
-            margin-bottom: 40px;
+            margin-bottom: 0px;
         }
+        
+       
 
         .category-header {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            padding: 14px 14px;
             margin-left: 20px;
             margin-right: 20px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            border-radius: 12px;
+            background: linear-gradient(135deg, #f5f7fa, #f3f3f2);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             user-select: none;
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
+         .category-header:first-child {
+             margin-top: 20px;
+        }
+        .category-header:last-child {
+             margin-bottom: 20px;
+        }
+        
+        
 
         .category-header:hover {
             transform: translateY(-2px);
@@ -158,15 +151,25 @@
         }
 
         .category-icon {
-            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(225, 225, 227, 0.4);
+            border-radius: 6px;
             margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 25px;
+            font-weight: 600;
         }
 
         .category-title {
-            font-size: 1.2rem;
+            font-size: 17px;
             font-weight: 600;
             color: #1d1d1f;
             flex: 1;
+            letter-spacing: -0.02em;
         }
 
         .category-chevron {
@@ -190,13 +193,14 @@
         .category-section.collapsed .features-list {
             max-height: 0;
             opacity: 0;
+            transition: all 0.3s ease;
             margin: 0;
         }
 
         .feature-item {
             background: white;
-            border-radius: 16px;
-            margin-top: 10px;
+            border-radius: 12px;
+            margin-top: 20px;
             margin-left: 20px;
             margin-right: 20px;
             padding: 20px;
@@ -209,7 +213,9 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
-
+        .feature-item:last-child {
+            margin-bottom: 20px;
+        }
         .feature-item::before {
             content: '';
             position: absolute;
@@ -387,15 +393,14 @@
         .mask-block{
               position: sticky;
               bottom: 0;
-              left: 0;
-              right: 0;
-              height: 24px; /* Altura da máscara */
-              background: #667eea; /* A cor do fundo */
-              z-index: 0;
+              box-shadow: 0 10px 30px rgba(255, 255, 255, 1);
+              height: 24px; 
+              background: #f5f5f7
+              z-index: 50;
         }
         
         .total-section {
-            background: linear-gradient(135deg, #1d1d1f, #2d2d2f);
+            background: linear-gradient(135deg, #1d1d1f, #4d4d4f);
             margin-top: -24px;
             padding: 25px 30px;
             display: flex;
@@ -451,13 +456,14 @@
             max-width: 1200px;
             margin: 16px auto;
             padding: 16px;
-            text-align: left; 
+            
             box-sizing: border-box;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .notes-title {
             font-size: 1.4rem;
+            text-align: center;
             font-weight: 600;
             margin-bottom: 20px;
             color: #1d1d1f;
@@ -465,17 +471,14 @@
             align-items: center;
         }
 
-        .notes-title::before {
-            content: '📋';
-            margin-right: 12px;
-        }
-
         .notes-list {
             display: grid;
             gap: 12px;
+            text-align: left; 
         }
 
         .note-item {
+          
             padding: 12px 16px;
             background: rgba(103, 126, 234, 0.1);
             border-radius: 12px;
@@ -508,7 +511,7 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 720px) {
             .hero-section {
                 padding: 60px 20px 40px;
             }
@@ -521,21 +524,10 @@
                 font-size: 1rem;
             }
 
-            .container {
-                padding: 0 15px 0;
-            }
 
             .total-section {
                 padding: 18px 15px;
                 font-size: 0.6rem;
-            }
-
-            .card-header, .features-grid, .total-section, .notes-section {
-                padding: 20px;
-            }
-
-            .features-list {
-                margin-left: 0;
             }
 
             .feature-content {
@@ -547,13 +539,6 @@
                 margin-left: 0;
                 margin-top: 8px;
                 text-align: left;
-            }
-
-            .total-section {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-                padding: 15px;
             }
 
             .total-value {
@@ -572,6 +557,7 @@
 
             .feature-details-expanded img {
                 max-width: 250px;
+                align-content: center;
             }
         }
 
@@ -598,8 +584,7 @@
       <a href="/" class="logo-link">
         <img src="https://i.ibb.co/4wfzG6qV/Gemini-Generated-Image-osss6cosss6cosss.png" alt="ALBIZ" class="logo" width="100">
     </a>
-        <h1 class="hero-title">App De Viagens</h1>
-        <p class="hero-subtitle">Orçamento personalizado para o seu aplicativo</p>
+        <h1 class="hero-title">App - Viagens</h1>
     </div>
 
     <div class="container">
