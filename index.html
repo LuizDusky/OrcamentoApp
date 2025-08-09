@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orçamento App</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 20px;
-            background: #f5f5f5;
+            background: #f9f9fb;
+            color: #333;
+        }
+
+        h1 {
+            text-align: Center;
+            padding: 20px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
 
         .container {
@@ -16,62 +29,59 @@
             margin: 0 auto;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            overflow: visible;
             padding-bottom: 0;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        .content {
-            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+			overflow: visible;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
         }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e9ecef;
-        }
-		table thead th:last-child {
-   			text-align: right;
-		}
-        th {
-            background: #495057;
-            color: white;
-            font-weight: 600;
+        thead {
+            background: white;
             position: sticky;
             top: 0;
             z-index: 10;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
-          
 
+        thead th {
+        	background: #f5f5f5;
+            text-align: left;
+            padding: 12px;
+            font-weight: 500;
+            color: #111;
+            font-size: 0.9rem;
+            z-index: 10;
+            position: sticky;
+        }
+
+        thead th.valor {
+            text-align: right;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody td {
+            padding: 12px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        tbody td.valor {
+            text-align: right;
+            color: #444;
+            font-weight: 500;
+            white-space: nowrap;
+        }
         .categoria {
-            background: #6c757d;
-            color: white;
+            background: #f5f5f5;
+            color: #44;
             font-weight: bold;
             font-size: 13px;
-        }
-
-        .basico {
-            background: #d1ecf1;
         }
 
         .checkbox-cell {
@@ -83,84 +93,58 @@
             transform: scale(1.2);
             cursor: pointer;
         }
-
-        .valor {
-            text-align: right;
-            font-weight: 500;
-            font-family: 'Courier New', monospace;
-            white-space: nowrap;
-        }
-
-        
-        .sticky-total {
-            position: sticky;
+		.sticky-total {
+              position: sticky;
             bottom: 0;
-            background: #28a745;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            z-index: 20;
-            box-shadow: 0 -6px 20px rgba(0,0,0,0.08);
+            background: #f5f5f5;
+            padding: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 16px;
-        }
-
-        .sticky-total .label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .sticky-total .valor {
-            text-align: right;
-            font-weight: 700;
-            font-family: 'Courier New', monospace;
-            white-space: nowrap;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+            z-index: 15;
         }
 
         .obs {
+            background: #f3f4f6;
             padding: 20px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            font-size: 13px;
-            color: #6c757d;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
+            font-size: 0.95rem;
+            color: #555;
+            border-top: 1px solid #e0e0e0;
         }
-
         .obs h3 {
             color: #495057;
             margin-top: 0;
         }
-
-        .expandir-btn {
+ .expandir-btn {
             cursor: pointer;
             background: none;
             border: none;
             font-size: 16px;
-            color: #007bff;
+            color: #1a2a6c;
             padding: 0;
-            margin-left: 8px;
-            transition: transform 0.3s ease;
+            margin-left: 6px;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .expandir-btn:hover {
-            color: #0056b3;
+            color: #fdbb2d;
         }
 
         .expandir-btn.aberto {
             transform: rotate(180deg);
+            color: #fdbb2d;
         }
 
         .detalhes {
             display: none;
-            background: #f8f9fa;
-            border-left: 3px solid #007bff;
+            background: #fafafa;
+            border-left: 3px solid #fdbb2d;
             margin: 8px 0;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 6px;
             animation: slideDown 0.3s ease;
         }
 
@@ -169,114 +153,42 @@
         }
 
         .detalhes h4 {
-            margin: 0 0 10px 0;
-            color: #495057;
-            font-size: 14px;
+            margin-bottom: 8px;
+            color: #1a2a6c;
+            font-size: 15px;
         }
 
         .detalhes p {
-            margin: 8px 0;
-            line-height: 1.5;
-            color: #6c757d;
+            color: #555;
+            margin: 6px 0;
+            line-height: 1.4;
         }
 
         .detalhes img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
+            max-width: 250px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
             margin: 10px 0;
-            border: 1px solid #dee2e6;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                max-height: 0;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
-            to {
-                opacity: 1;
-                max-height: 300px;
-                padding-top: 15px;
-                padding-bottom: 15px;
-            }
-        }
 
-        @media (max-width: 768px) {
-            body {
-                margin: 10px;
-            }
-
-            .container {
-                margin: 0;
-                border-radius: 8px;
-            }
-
-            table {
-                font-size: 11px;
-            }
-
-            th, td {
-                padding: 6px 4px;
-            }
-
-            .checkbox-cell {
-                width: 35px;
-            }
-
-            .valor {
-                font-size: 11px;
-                min-width: 70px;
-            }
-
-            .header h1 {
-                font-size: 18px;
-            }
-
-            .expandir-btn {
-                font-size: 14px;
-                margin-left: 5px;
-            }
-
-            .detalhes {
-                padding: 10px;
-                margin: 5px 0;
-            }
-
-            .detalhes h4 {
-                font-size: 12px;
-            }
-
-            .obs {
-                font-size: 11px;
-                padding: 15px;
-            }
-
-            .sticky-total {
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>💼 Orçamento - App de viagens</h1>
-        </div>
 
-        <div class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Selecionar</th>
-                        <th>Item</th>
-                        <th>Descrição</th>
-                        <th>Valor (R$)</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <h1>Orçamento do Aplicativo</h1>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Selecionar</th>
+                    <th>Item</th>
+                    <th>Descrição</th>
+                    <th class="valor">Valor (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
                     <!-- Pacote Básico -->
                     <tr class="categoria">
                         <td colspan="4">📱 PACOTE BÁSICO</td>
@@ -562,63 +474,41 @@
                         <td class="valor">600,00</td>
                     </tr>
                 </tbody>
-            </table>
+        </table>
 
-            <!-- Sticky total -->
-            <div class="sticky-total" id="sticky-total">
-                <div class="label">💰 <strong>TOTAL DO ORÇAMENTO</strong></div>
+        <div class="sticky-total" id="sticky-total">
+                <div class="label"> <strong>TOTAL DO ORÇAMENTO</strong></div>
                 <div id="total" class="valor"><strong>R$ 2.000,00</strong></div>
             </div>
         </div>
 
+            <!-- OBSERVAÇÕES -->
         <div class="obs">
             <h3>📋 Observações Importantes:</h3>
-            <p><strong>• Prazo:</strong> 2-8 semanas (variando conforme funcionalidades selecionadas)</p>
+            <p><strong>• Prazo:</strong> 2-8 semanas</p>
             <p><strong>• Pagamento:</strong> 50% na assinatura + 50% na entrega</p>
             <p><strong>• Revisões:</strong> Até 3 revisões incluídas</p>
             <p><strong>• Garantia:</strong> 30 dias para correção de bugs</p>
-            <p><strong>• Manutenção:</strong> R$ 300,00/mês (opcional)</p>
             <p>* Esta funcionalidade depende de licença/assinatura a qual o cliente é responsável</p>
         </div>
     </div>
 
     <script>
         function calcularTotal() {
-            let total = 2000; // Valor básico sempre incluído
-
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#basico)');
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    total += parseInt(checkbox.dataset.valor || 0, 10);
-                }
+            let total = 2000; 
+            document.querySelectorAll('input[type="checkbox"]:not(#basico)').forEach(chk => {
+                if (chk.checked) total += parseInt(chk.dataset.valor || 0);
             });
-
-            document.getElementById('total').innerHTML = `<strong>R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
+            document.getElementById('total').innerHTML = `<strong>R$ ${total.toLocaleString('pt-BR',{minimumFractionDigits:2})}</strong>`;
         }
 
-        
-        function toggleDetalhes(elementoId, botao) {
-            const detalhes = document.getElementById(elementoId);
-
-            if (!detalhes) return;
-
-            if (detalhes.classList.contains('visivel')) {
-                detalhes.classList.remove('visivel');
-                botao.innerHTML = '▼';
-                botao.classList.remove('aberto');
-            } else {
-                detalhes.classList.add('visivel');
-                botao.innerHTML = '▲';
-                botao.classList.add('aberto');
-            }
+        function toggleDetalhes(id, btn) {
+            const box = document.getElementById(id);
+            box.classList.toggle('visivel');
+            btn.classList.toggle('aberto');
         }
 
-        
-        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', calcularTotal);
-        });
-
-        
+        document.querySelectorAll('input[type="checkbox"]').forEach(chk => chk.addEventListener('change', calcularTotal));
         calcularTotal();
     </script>
 </body>
